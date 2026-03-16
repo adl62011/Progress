@@ -20,7 +20,6 @@ import pandas as pd
 
 file = 'contoh_pengolahan_file.xlsx'
 
-# Cleaning data
 df_final = (
     pd.read_excel(file)
     .query('Jumlah < 0')
