@@ -149,3 +149,30 @@ def market_summary(coin_list: list) -> None:
     print(f"Avg 24h Change   : {avg_change:+.2f}%")
     print(f"Total Market Cap : $ {total_mc / 1_000_000_000_000:.2f} T")
     print("=" * 30)
+
+from Project_1 import *
+
+# --- Main Program ---
+
+if __name__ == "__main__":
+    # Initialize Coins
+    bitcoin = CryptoTracker("bitcoin", "BTC")
+    ethereum = CryptoTracker("ethereum", "ETH")
+
+    all_coins = [bitcoin, ethereum]
+
+    # Process Data
+    print("\n🚀 Starting Market Monitoring...")
+    for coin in all_coins:
+        if coin.fetch_price():
+            coin.check_volatility(threshold=2.0)
+        time.sleep(2)  # Respectful delay for API
+
+    # Display Results
+    bitcoin.display_info()
+    compare_coins(all_coins)
+    market_summary(all_coins)
+
+    # Save BTC Data
+    bitcoin.save_report()
+    ethereum.save_report()
