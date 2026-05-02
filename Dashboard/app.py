@@ -1,10 +1,9 @@
 import streamlit as st
-import pandas as pd
 from Data import load_and_process_data
 from plots import plot_sunburst_donut, plot_revenue_bar
 
 # 1. Konfigurasi Halaman (Wajib dipanggil pertama)
-st.set_page_config(page_title="Sales Dashboard Dummy Data", page_icon="✨", layout="wide")
+st.set_page_config(page_title="Sales Dashboard", page_icon="✨", layout="wide")
 
 # 2. CSS Kustom untuk Background Fade Ungu & Styling Profesional
 st.markdown("""
@@ -39,23 +38,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def main():
-    st.title("Hardware Sales Executive Dashboard")
+    st.title(" Tech-Hardware Executive Dashboard")
     st.markdown("Analisis performa penjualan dengan antarmuka visual kelas enterprise.")
 
     # Sidebar
-    st.sidebar.markdown("### 📊 Status Data")
-    
-    # Membaca file secara permanen dari folder yang sama
-    try:
-        # Jika app.py dan csv ada di folder yang sama (Dashboard/)
-        uploaded_file = "Dashboard/data_dummy.csv" 
-        df = pd.read_csv(uploaded_file)
-        st.sidebar.success("✅ Data loaded secara otomatis")
-    except:
-        # Backup jika path di atas error (tergantung konfigurasi Streamlit Cloud)
-        uploaded_file = "data_dummy.csv"
-        df = pd.read_csv(uploaded_file)
-        st.sidebar.success("✅ Data loaded secara otomatis")
+    st.sidebar.markdown("### ⚙️ Upload Data")
+    uploaded_file = st.sidebar.file_uploader("Upload dataset CSV", type=['csv'])
 
     if uploaded_file is not None:
         data = load_and_process_data(uploaded_file)
