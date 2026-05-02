@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from Data import load_and_process_data
 from plots import plot_sunburst_donut, plot_revenue_bar
 
@@ -38,12 +39,23 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def main():
-    st.title(" Hardware Sales Executive Dashboard")
+    st.title("Hardware Sales Executive Dashboard")
     st.markdown("Analisis performa penjualan dengan antarmuka visual kelas enterprise.")
 
     # Sidebar
-    st.sidebar.markdown("### ⚙️ Upload Data")
-    uploaded_file = st.sidebar.file_uploader("Upload dataset CSV", type=['csv'])
+    st.sidebar.markdown("### 📊 Status Data")
+    
+    # Membaca file secara permanen dari folder yang sama
+    try:
+        # Jika app.py dan csv ada di folder yang sama (Dashboard/)
+        uploaded_file = "Dashboard/data_dummy.csv" 
+        df = pd.read_csv(uploaded_file)
+        st.sidebar.success("✅ Data loaded secara otomatis")
+    except:
+        # Backup jika path di atas error (tergantung konfigurasi Streamlit Cloud)
+        uploaded_file = "data_dummy.csv"
+        df = pd.read_csv(uploaded_file)
+        st.sidebar.success("✅ Data loaded secara otomatis")
 
     if uploaded_file is not None:
         data = load_and_process_data(uploaded_file)
