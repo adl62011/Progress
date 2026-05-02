@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from Data import load_and_process_data
 from plots import plot_sunburst_donut, plot_revenue_bar
 
@@ -41,9 +42,21 @@ def main():
     st.title(" Tech-Hardware Executive Dashboard")
     st.markdown("Analisis performa penjualan dengan antarmuka visual kelas enterprise.")
 
-    # Sidebar
-    st.sidebar.markdown("### ⚙️ Upload Data")
-    uploaded_file = st.sidebar.file_uploader("Upload dataset CSV", type=['csv'])
+# Sidebar
+    st.sidebar.markdown("### 📊 Status Data")
+    
+    # Path otomatis: mencari file 'dataset.csv' di folder yang sama dengan app.py
+    base_path = os.path.dirname(__file__)
+    file_path = os.path.join(base_path, "dataset.csv") 
+
+    # Cek apakah file ada di GitHub/Server
+    if os.path.exists(file_path):
+        # Ini kuncinya: kita isi variabel 'uploaded_file' dengan path file permanen
+        uploaded_file = file_path 
+        st.sidebar.success("✅ Data dimuat otomatis dari GitHub")
+    else:
+        st.sidebar.error("❌ File 'dataset.csv' tidak ditemukan di folder Dashboard")
+        st.stop() # Berhenti agar tidak error ke bawah
 
     if uploaded_file is not None:
         data = load_and_process_data(uploaded_file)
