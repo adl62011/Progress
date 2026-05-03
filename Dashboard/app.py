@@ -102,6 +102,9 @@ def main():
 
             fig_line = plot_statistics(data['monthly_rev'])
             st.plotly_chart(fig_line, use_container_width=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.caption('Dashboard ini gue bikin buat nunjukin gimana cara kerja sistem automasi data pake Python. Dan kalau lu mau pakai banyak fitur lainnya selain ini gw juga bisa contohnya kalau lu mau ada 5 statistik atau 10 bisa aja pookonya bisa semau lu!!')
+            st.caption('Bukan aplikasi jualan ya, tapi kalau lu punya bisnis dan pusing liat Excel berantakan, gue bisa buatin yang custom kayak gini. DM aja!')
 
     else:
         st.info("Silakan masukkan file CSV pada panel di sebelah kiri untuk merender antarmuka.")

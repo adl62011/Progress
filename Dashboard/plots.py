@@ -53,8 +53,8 @@ def plot_revenue_bar(df_revenue):
     
     fig.update_layout(
         title=dict(text='Omset Per Kategori', font=dict(size=20, color='white')),
-        xaxis=dict(title='', tickfont=dict(color='white')),
-        yaxis=dict(title='Total Transaksi (Rp)', tickfont=dict(color='white'), gridcolor='rgba(255,255,255,0.1)'),
+        xaxis=dict(title='', tickfont=dict(family="Inter, Segoe UI", size=14,color='white')),
+        yaxis=dict(title='Total Transaksi (Rp)', tickfont=dict(family="Inter, Segoe UI", size=14,color='white'), gridcolor='rgba(255,255,255,0.1)'),
         plot_bgcolor='rgba(0,0,0,0)',
         paper_bgcolor='rgba(0,0,0,0)',
         coloraxis_showscale=False, # Sembunyikan legenda gradasi agar UI lebih bersih
@@ -80,16 +80,16 @@ def plot_statistics(df_performa_penjualan):
     fig.update_layout(
         title=dict(
             text='Tren Penjualan Bulanan',
-            font=dict(family="Inter, Segoe UI", size=20, color='white')
+            font=dict(family="Inter, Segoe UI", size=25, color='white')
         ),
         xaxis=dict(
             title='',
-            tickfont=dict(family="Inter, Segoe UI", color='white'),
+            tickfont=dict(family="Inter, sans-serif", size=14, color='white'),
             gridcolor='rgba(255,255,255,0.1)' # Grid tipis transparan
         ),
         yaxis=dict(
             title='Total Penjualan',
-            tickfont=dict(family="Inter, Segoe UI", color='white'),
+            tickfont=dict(family="Inter, Segoe UI", size=14, color='white'),
             gridcolor='rgba(255,255,255,0.1)',
             tickprefix='Rp '
         ),
